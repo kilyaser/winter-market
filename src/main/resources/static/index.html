@@ -16,6 +16,37 @@
 </head>
 
 <body>
+<nav class="navbar navbar-expand-lg bg-light">
+  <div class="container-fluid fs-5">
+    <a class="navbar-brand" href="#">
+      <img src="images/menu_logo.png" alt="logo">
+    </a>
+    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="collapse navbar-collapse" id="navbarNav">
+      <ul class="navbar-nav">
+        <li class="nav-item">
+          <a class="nav-link active" aria-current="page" href="#">Главная</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="#">Магазин</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="#">О нас</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="#">Контакты</a>
+        </li>
+      </ul>
+    </div>
+    <div class="collapse navbar-collapse position-relative">
+      <a  href="#">
+        <img src="images/basket.svg" alt="basket" class="position-absolute top-50 start-50 translate-middle">
+      </a>
+    </div>
+  </div>
+</nav>
 <div class="container" ng-controller="indexController">
   <h1>Store</h1>
   <br>
@@ -25,7 +56,7 @@
       <td>ID</td>
       <td>Назавание</td>
       <td>Цена</td>
-      <td>Информация</td>
+      <td>Купить</td>
     </tr>
     <tbody>
     <tr ng-repeat="p in productsList">
@@ -34,8 +65,35 @@
       <td>{{p.price}}</td>
       <td>
         <button type="button" class="btn btn-info" ng-click="showProductInfo(p.id)">Info</button>
-        <button type="button" class="btn btn-danger" ng-click="deleteProductById(p.id)">Delete</button>
+        <button type="button" class="btn btn-success" ng-click="addToCart(p.id)">В корзину</button>
       </td>
+    </tr>
+    </tbody>
+  </table>
+  <h3>Корзина</h3>
+  <table class="table table-hover">
+    <tr class="table-light">
+      <td>ID</td>
+      <td>Назавание</td>
+      <td>Цена</td>
+      <td>Убрать</td>
+    </tr>
+    <tbody>
+    <tr ng-repeat="p in cartList">
+      <td>{{p.id}}</td>
+      <td>{{p.title}}</td>
+      <td>{{p.price}}</td>
+      <td>
+        <button type="button" class="btn btn-danger" ng-click="deleteProductFromCart(p.id)">Убрать</button>
+      </td>
+    </tr>
+    </tbody>
+    <tbody>
+    <tr class="fw-semibold table-light" ng-model="sum">
+      <td>Всего</td>
+      <td></td>
+      <td>{{sum}}</td>
+      <td></td>
     </tr>
     </tbody>
   </table>

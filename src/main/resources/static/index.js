@@ -1,10 +1,19 @@
 angular.module('app', []).controller('indexController', function ($scope, $http) {
     const contextPath = 'http://localhost:8189/winter/api/v1/products'
+    const cartContextPath = 'http://localhost:8189/winter/api/v1/carts'
 
     $scope.loadProducts = function () {
         $http.get(contextPath)
             .then(function (response) {
                 $scope.productsList = response.data;
+        });
+    }
+
+    $scope.loadCartProduct = function () {
+        $http.get(cartContextPath)
+            .then(function (response) {
+                $scope.cartList = response.data;
+                console.log(response.data);
         });
     }
 
@@ -14,15 +23,34 @@ angular.module('app', []).controller('indexController', function ($scope, $http)
                 alert(response.data.title);
         });
     }
-    $scope.deleteProductById = function (productId) {
-        $http.delete(contextPath + '/' + productId)
+
+    $scope.addToCart = function (productId) {
+        $http.get(cartContextPath + '/' + productId)
             .then(function (response) {
-                $scope.loadProducts();
+                $scope.loadCartProduct();
+                $scope.cartSum();
             });
 
     }
 
+    $scope.deleteProductFromCart = function (productId) {
+        $http.delete(cartContextPath + '/' + productId)
+            .then(function (response) {
+                $scope.loadCartProduct();
+                $scope.cartSum();
+        })
+    }
+
+    $scope.cartSum = function () {
+        $http.get(cartContextPath + '/sum')
+            .then(function (response) {
+                $scope.sum = response.data;
+        });
+    }
+
+    $scope.loadCartProduct();
     $scope.loadProducts();
+    $scope.cartSum();
 
 
 
