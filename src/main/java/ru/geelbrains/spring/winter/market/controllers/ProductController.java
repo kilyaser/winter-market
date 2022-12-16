@@ -5,7 +5,6 @@ import lombok.RequiredArgsConstructor;
 import org.springframework.web.bind.annotation.*;
 import ru.geelbrains.spring.winter.market.entities.Product;
 import ru.geelbrains.spring.winter.market.servicies.ProductService;
-
 import java.util.List;
 
 @RestController

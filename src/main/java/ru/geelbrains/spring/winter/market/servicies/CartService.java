@@ -5,6 +5,7 @@ import org.springframework.stereotype.Service;
 import ru.geelbrains.spring.winter.market.dtos.Cart;
 import ru.geelbrains.spring.winter.market.entities.Product;
 
+import java.util.Collections;
 import java.util.List;
 
 @Service
@@ -14,7 +15,7 @@ public class CartService {
     private final Cart cart;
 
     public List<Product> getProductFromCart() {
-        return cart.getProducts();
+        return Collections.unmodifiableList(cart.getProducts());
     }
 
     public int getSum() {
@@ -37,5 +38,8 @@ public class CartService {
                break;
            }
        }
+    }
+    public int countProductInCart() {
+        return cart.getProducts().size();
     }
 }
