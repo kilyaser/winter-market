@@ -15,7 +15,7 @@
   <title>Product List</title>
 </head>
 
-<body>
+<body ng-controller="indexController">
 <nav class="navbar navbar-expand-lg bg-light">
   <div class="container-fluid fs-5">
     <a class="navbar-brand" href="#">
@@ -40,14 +40,15 @@
         </li>
       </ul>
     </div>
-    <div class="collapse navbar-collapse position-relative">
+    <div ng-model="count" class="collapse navbar-collapse position-relative">
       <a  href="#">
         <img src="images/basket.svg" alt="basket" class="position-absolute top-50 start-50 translate-middle">
+        <span class="position-absolute bottom-50 end-50 translate-middle badge rounded-pill bg-secondary">{{count}}</span>
       </a>
     </div>
   </div>
 </nav>
-<div class="container" ng-controller="indexController">
+<div class="container" ">
   <h1>Store</h1>
   <br>
   <h3>Каталог товаров</h3>

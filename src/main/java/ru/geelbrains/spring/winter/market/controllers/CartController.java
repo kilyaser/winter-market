@@ -11,18 +11,18 @@ import java.util.List;
 
 @RestController
 @RequiredArgsConstructor
-@RequestMapping("/api/v1/carts")
+@RequestMapping("/api/v1/cart")
 @Slf4j
 public class CartController {
 
     private final CartService cartService;
     private final ProductService productService;
 
-    @GetMapping("/{id}")
+    @GetMapping("/add/{id}")
     public List<Product> addToCart(@PathVariable Long id) {
         return cartService.addProductToCart(productService.findById(id).get());
     }
-    @DeleteMapping("/{id}")
+    @GetMapping("/delete/{id}")
     public void deleteProductFromCart(@PathVariable Long id) {
         cartService.deleteProductFromCart(id);
     }
@@ -34,5 +34,10 @@ public class CartController {
     @GetMapping("/sum")
     public int getCartSum() {
         return cartService.getSum();
+    }
+
+    @GetMapping("/count")
+    public int countProductInCart() {
+        return cartService.countProductInCart();
     }
 }

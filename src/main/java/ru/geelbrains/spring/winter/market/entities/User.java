@@ -2,9 +2,6 @@ package ru.geelbrains.spring.winter.market.entities;
 
 import jakarta.persistence.*;
 import lombok.Data;
-import org.hibernate.annotations.CreationTimestamp;
-
-import java.time.LocalDateTime;
 import java.util.Collection;
 
 @Entity
