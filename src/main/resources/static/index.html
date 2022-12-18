@@ -40,15 +40,15 @@
         </li>
       </ul>
     </div>
-    <div ng-model="count" class="collapse navbar-collapse position-relative">
+    <div class="collapse navbar-collapse position-relative">
       <a  href="#">
         <img src="images/basket.svg" alt="basket" class="position-absolute top-50 start-50 translate-middle">
-        <span class="position-absolute bottom-50 end-50 translate-middle badge rounded-pill bg-secondary">{{count}}</span>
+        <span class="position-absolute bottom-50 end-50 translate-middle badge rounded-pill bg-secondary">{{cart.totalPrice}}</span>
       </a>
     </div>
   </div>
 </nav>
-<div class="container" ">
+<div class="container">
   <h1>Store</h1>
   <br>
   <h3>Каталог товаров</h3>
@@ -65,7 +65,6 @@
       <td>{{p.title}}</td>
       <td>{{p.price}}</td>
       <td>
-        <button type="button" class="btn btn-info" ng-click="showProductInfo(p.id)">Info</button>
         <button type="button" class="btn btn-success" ng-click="addToCart(p.id)">В корзину</button>
       </td>
     </tr>
@@ -74,27 +73,33 @@
   <h3>Корзина</h3>
   <table class="table table-hover">
     <tr class="table-light">
-      <td>ID</td>
-      <td>Назавание</td>
+      <td>Название</td>
+      <td>Количество</td>
       <td>Цена</td>
       <td>Убрать</td>
     </tr>
     <tbody>
-    <tr ng-repeat="p in cartList">
-      <td>{{p.id}}</td>
-      <td>{{p.title}}</td>
-      <td>{{p.price}}</td>
+    <tr ng-repeat="item in cart.items">
+      <td>{{item.productTitle}}</td>
       <td>
-        <button type="button" class="btn btn-danger" ng-click="deleteProductFromCart(p.id)">Убрать</button>
+        <button type="button" class="btn btn-light" ng-click="deleteProductFromCart(item.productId)">-</button>
+        {{item.quantity}}
+        <button type="button" class="btn btn-light" ng-click="addToCart(item.productId)">+</button>
+      </td>
+      <td>{{item.price}}</td>
+      <td>
+        <button type="button" class="btn btn-danger" ng-click="deleteAllQuantityFromCart(item.productId)">X</button>
       </td>
     </tr>
     </tbody>
     <tbody>
-    <tr class="fw-semibold table-light" ng-model="sum">
+    <tr class="fw-semibold table-light">
       <td>Всего</td>
       <td></td>
-      <td>{{sum}}</td>
-      <td></td>
+      <td>{{cart.totalPrice}}</td>
+      <td>
+        <button type="button" class="btn btn-danger" ng-click="deleteAllFromCart()">Очистить</button>
+      </td>
     </tr>
     </tbody>
   </table>

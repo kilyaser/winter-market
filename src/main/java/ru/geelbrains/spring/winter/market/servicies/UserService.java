@@ -10,6 +10,7 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 import ru.geelbrains.spring.winter.market.entities.Role;
 import ru.geelbrains.spring.winter.market.entities.User;
+import ru.geelbrains.spring.winter.market.exceptions.ResourceNotFoundException;
 import ru.geelbrains.spring.winter.market.repositories.UserRepository;
 import java.util.Collection;
 import java.util.Optional;
@@ -26,7 +27,7 @@ public class UserService implements UserDetailsService {
     @Override
     @Transactional
     public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
-        User user = findByUsername(username).get(); //FIXME написать корректную форму получения User из Optional
+        User user = findByUsername(username).orElseThrow(() -> new ResourceNotFoundException(String.format("User username: %s not found", username)));
         return new org.springframework.security.core.userdetails.User(user.getUsername(), user.getPassword(), mapRoleToAuthorities(user.getRoles()));
     }
     private Collection<? extends GrantedAuthority> mapRoleToAuthorities(Collection<Role> roles) {
