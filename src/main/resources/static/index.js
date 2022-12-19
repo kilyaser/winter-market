@@ -9,59 +9,43 @@ angular.module('app', []).controller('indexController', function ($scope, $http)
         });
     }
 
-    $scope.loadCartProduct = function () {
+    $scope.loadCart = function () {
         $http.get(cartContextPath)
             .then(function (response) {
-                $scope.cartList = response.data;
-        });
-    }
+                $scope.cart = response.data;
 
-    $scope.showProductInfo = function (productId) {
-        $http.get(contextPath + '/' + productId)
-            .then(function (response){
-                alert(response.data.title);
         });
     }
 
     $scope.addToCart = function (productId) {
         $http.get(cartContextPath + '/add/' + productId)
             .then(function (response) {
-                $scope.loadCartProduct();
-                $scope.cartSum();
-                $scope.countProduct();
+                $scope.loadCart();
             });
-
     }
+
 
     $scope.deleteProductFromCart = function (productId) {
         $http.get(cartContextPath + '/delete/' + productId)
             .then(function (response) {
-                $scope.loadCartProduct();
-                $scope.cartSum();
-                $scope.countProduct();
-        })
-    }
-
-    $scope.cartSum = function () {
-        $http.get(cartContextPath + '/sum')
-            .then(function (response) {
-                $scope.sum = response.data;
-        });
-    }
-    $scope.countProduct = function () {
-        $http.get(cartContextPath + '/count')
-            .then(function (response) {
-               $scope.count = response.data;
+                $scope.loadCart();
             });
     }
+    $scope.deleteAllQuantityFromCart = function (productId) {
+        $http.get(cartContextPath + '/deleteQuantity/' + productId)
+            .then(function (response) {
+                $scope.loadCart();
+            });
+    }
+    $scope.deleteAllFromCart = function () {
+        $http.get(cartContextPath + '/cleanAll/')
+            .then(function (response) {
+                $scope.loadCart();
+        });
+    }
 
-    $scope.loadCartProduct();
+    $scope.loadCart();
     $scope.loadProducts();
-    $scope.cartSum();
-    $scope.countProduct()
-
-
-
 
 //
 //     $scope.loadProducts = function (pageIndex = 1) {

@@ -3,11 +3,9 @@ package ru.geelbrains.spring.winter.market.controllers;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.web.bind.annotation.*;
-import ru.geelbrains.spring.winter.market.entities.Product;
+import ru.geelbrains.spring.winter.market.dtos.Cart;
 import ru.geelbrains.spring.winter.market.servicies.CartService;
-import ru.geelbrains.spring.winter.market.servicies.ProductService;
 
-import java.util.List;
 
 @RestController
 @RequiredArgsConstructor
@@ -16,28 +14,28 @@ import java.util.List;
 public class CartController {
 
     private final CartService cartService;
-    private final ProductService productService;
-
     @GetMapping("/add/{id}")
-    public List<Product> addToCart(@PathVariable Long id) {
-        return cartService.addProductToCart(productService.findById(id).get());
+    public void addToCart(@PathVariable Long id) {
+        cartService.add(id);
+    }
+    @GetMapping
+    public Cart getCurrentCart() {
+        return cartService.getCurrentCart();
     }
     @GetMapping("/delete/{id}")
     public void deleteProductFromCart(@PathVariable Long id) {
         cartService.deleteProductFromCart(id);
     }
-    @GetMapping
-    public List<Product> getAllProductFromCart() {
-        return cartService.getProductFromCart();
+
+    @GetMapping("/deleteQuantity/{id}")
+    public void deleteAllQuantity(@PathVariable Long id) {
+        cartService.deleteAllQuantity(id);
     }
 
-    @GetMapping("/sum")
-    public int getCartSum() {
-        return cartService.getSum();
+    @GetMapping("/cleanAll/")
+    public void deleteAllQuantity()
+    {
+        cartService.cleanAll();
     }
 
-    @GetMapping("/count")
-    public int countProductInCart() {
-        return cartService.countProductInCart();
-    }
 }
