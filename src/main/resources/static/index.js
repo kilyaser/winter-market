@@ -25,25 +25,25 @@ angular.module('app', []).controller('indexController', function ($scope, $http)
     }
 
 
-    $scope.deleteProductFromCart = function (productId) {
-        $http.get(cartContextPath + '/delete/' + productId)
-            .then(function (response) {
-                $scope.loadCart();
-            });
-    }
-    $scope.deleteAllQuantityFromCart = function (productId) {
-        $http.get(cartContextPath + '/deleteQuantity/' + productId)
-            .then(function (response) {
-                $scope.loadCart();
-            });
-    }
-    $scope.deleteAllFromCart = function () {
-        $http.get(cartContextPath + '/cleanAll/')
-            .then(function (response) {
-                $scope.loadCart();
-        });
-    }
-
+    // $scope.deleteProductFromCart = function (productId) {
+    //     $http.get(cartContextPath + '/delete/' + productId)
+    //         .then(function (response) {
+    //             $scope.loadCart();
+    //         });
+    // }
+    // $scope.deleteAllQuantityFromCart = function (productId) {
+    //     $http.get(cartContextPath + '/deleteQuantity/' + productId)
+    //         .then(function (response) {
+    //             $scope.loadCart();
+    //         });
+    // }
+    // $scope.deleteAllFromCart = function () {
+    //     $http.get(cartContextPath + '/cleanAll/')
+    //         .then(function (response) {
+    //             $scope.loadCart();
+    //     });
+    // }
+    //
     $scope.loadCart();
     $scope.loadProducts();
 
