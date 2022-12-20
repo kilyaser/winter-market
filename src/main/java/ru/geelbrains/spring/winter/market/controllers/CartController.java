@@ -3,7 +3,7 @@ package ru.geelbrains.spring.winter.market.controllers;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.web.bind.annotation.*;
-import ru.geelbrains.spring.winter.market.dtos.Cart;
+import ru.geelbrains.spring.winter.market.models.Cart;
 import ru.geelbrains.spring.winter.market.servicies.CartService;
 
 
@@ -32,10 +32,9 @@ public class CartController {
         cartService.deleteAllQuantity(id);
     }
 
-    @GetMapping("/cleanAll/")
-    public void deleteAllQuantity()
-    {
-        cartService.cleanAll();
+    @GetMapping("/clear")
+    public void clearCart() {
+        cartService.clear();
     }
 
 }

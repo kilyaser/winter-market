@@ -4,7 +4,7 @@ import jakarta.annotation.PostConstruct;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Service;
-import ru.geelbrains.spring.winter.market.dtos.Cart;
+import ru.geelbrains.spring.winter.market.models.Cart;
 import ru.geelbrains.spring.winter.market.entities.Product;
 import ru.geelbrains.spring.winter.market.exceptions.ResourceNotFoundException;
 
@@ -31,8 +31,8 @@ public class CartService {
     public Cart getCurrentCart() {
         return tempCart;
     }
-    public void cleanAll() {
-        tempCart.cleanAll();
+    public void clear() {
+        tempCart.clear();
     }
 
     @PostConstruct
