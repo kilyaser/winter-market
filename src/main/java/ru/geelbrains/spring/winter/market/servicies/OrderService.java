@@ -19,7 +19,6 @@ import java.util.List;
 @Slf4j
 public class OrderService {
     private final CartService cartService;
-    private final ProductService productService;
     private final OrderItemConverter orderItemConverter;
     private final OrderItemRepository orderItemRepository;
     private final OrderRepository orderRepository;

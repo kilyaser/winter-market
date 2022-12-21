@@ -5,6 +5,7 @@ import lombok.RequiredArgsConstructor;
 import org.springframework.web.bind.annotation.*;
 import ru.geelbrains.spring.winter.market.converters.ProductConverter;
 import ru.geelbrains.spring.winter.market.dtos.ProductDto;
+import ru.geelbrains.spring.winter.market.entities.Category;
 import ru.geelbrains.spring.winter.market.entities.Product;
 import ru.geelbrains.spring.winter.market.exceptions.ResourceNotFoundException;
 import ru.geelbrains.spring.winter.market.servicies.ProductService;
@@ -26,6 +27,11 @@ public class ProductController {
     public ProductDto findProductById(@PathVariable Long id) {
         Product p = productService.findById(id).orElseThrow(() -> new ResourceNotFoundException(String.format("Product id:%s not found", id)));
         return productConverter.entityToDto(p);
+    }
+    @PostMapping
+    public ProductDto createNewProduct(@RequestBody ProductDto productDto) {
+        Product product = productService.createNewProduct(productDto);
+        return productConverter.entityToDto(product);
     }
 
     @DeleteMapping("/{id}")
