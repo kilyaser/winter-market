@@ -1,13 +1,14 @@
-angular.module('app', []).controller('indexController', function ($scope, $http) {
+angular.module('app', ['ngStorage']).controller('indexController', function ($scope, $http, $localStorage) {
     const contextPath = 'http://localhost:8189/winter/api/v1/products'
     const cartContextPath = 'http://localhost:8189/winter/api/v1/cart'
+    const authPath = 'http://localhost:8189/winter/auth'
 
     $scope.loadProducts = function () {
         $http.get(contextPath)
             .then(function (response) {
                 $scope.productsList = response.data;
         });
-    }
+    };
 
     $scope.loadCart = function () {
         $http.get(cartContextPath)
@@ -15,35 +16,62 @@ angular.module('app', []).controller('indexController', function ($scope, $http)
                 $scope.cart = response.data;
 
         });
-    }
+    };
 
     $scope.addToCart = function (productId) {
         $http.get(cartContextPath + '/add/' + productId)
             .then(function (response) {
                 $scope.loadCart();
             });
+    };
+//========== Authorization code ==============================
+    $scope.tryToAuth = function () {
+        $http.post(authPath, $scope.user)
+            .then(function successCallback(response) {
+                if (response.data.token) {
+                    $http.defaults.headers.common.Authorization = 'Bearer ' + response.data.token;
+                    $localStorage.winterMarketUser = {username: $scope.user.username, token: response.data.token};
+
+                    $scope.user.username = null;
+                    $scope.user.password = null;
+                }
+            }, function errorCallback(response){
+
+            });
+    };
+
+    $scope.tryToLogout = function () {
+        $scope.clearUser();
+        $scope.user = null;
+    };
+
+    $scope.clearUser = function () {
+        delete $localStorage.winterMarketUser;
+        $http.defaults.common.Authorization = '';
+    };
+
+    $scope.isUserLoggedIn = function () {
+        if ($localStorage.winterMarketUser) {
+            return true;
+        } else {
+            return false;
+        }
+    };
+    if ($localStorage.winterMarketUser) {
+        try {
+            let jwt = $localStorage.winterMarketUser.token;
+            let payload = JSON.parse(atob(jwt.split('.')[1]));
+            let currentTime = parseInt(new Date().getTime() / 1000);
+            if (currentTime > payload.ext) {
+                console.log("Token is expired!!!");
+                delete  $localStorage.winterMarketUser;
+                $http.defaults.headers.common.Authorization = '';
+            }
+        } catch (e) {
+        }
+            $http.defaults.headers.common.Authorization = 'Bearer ' + $localStorage.winterMarketUser.token;
     }
-
-
-    // $scope.deleteProductFromCart = function (productId) {
-    //     $http.get(cartContextPath + '/delete/' + productId)
-    //         .then(function (response) {
-    //             $scope.loadCart();
-    //         });
-    // }
-    // $scope.deleteAllQuantityFromCart = function (productId) {
-    //     $http.get(cartContextPath + '/deleteQuantity/' + productId)
-    //         .then(function (response) {
-    //             $scope.loadCart();
-    //         });
-    // }
-    // $scope.deleteAllFromCart = function () {
-    //     $http.get(cartContextPath + '/cleanAll/')
-    //         .then(function (response) {
-    //             $scope.loadCart();
-    //     });
-    // }
-    //
+//================ end authorization ================================
     $scope.loadCart();
     $scope.loadProducts();
 

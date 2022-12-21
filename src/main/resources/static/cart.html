@@ -9,10 +9,11 @@
   <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-kenU1KFdBIe4zVF0s0G1M5b4hcpxyD9F7jL+jjXkk+Q2h455rYXK/7HAuoJl+0I4" crossorigin="anonymous"></script>
 
   <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.8.0/angular.min.js"></script>
-   <script src="cart.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/ngStorage/0.3.11/ngStorage.min.js"></script>
+  <script src="cart.js"></script>
 
 
-  <title>Product List</title>
+  <title>Shopping Cart</title>
 </head>
 
 <body ng-controller="cartController">
@@ -80,6 +81,24 @@
         <button type="button" class="btn btn-danger" data-bs-toggle="tooltip" data-bs-placement="right" title="Clear the entire shopping cart" ng-click="deleteAllFromCart()">Clear</button>
       </td>
     </tr>
+    </tbody>
+  </table>
+  <div>
+    <button type="button" class="btn btn-success" data-bs-toggle="tooltip" data-bs-placement="right" title="create order" ng-click="createOrder()">Create Order</button>
+  </div>
+  <h3>My orders</h3>
+  <table class="table table-hover">
+    <tr class="table-light">
+      <td>№</td>
+      <td>Quantity</td>
+      <td>Price</td>
+    </tr>
+    <tbody>
+    <tr ng-repeat="o in orders">
+      <td>{{o.id}}</td>
+      <td></td>
+      <td>{{o.totalPrice}}</td>
+     </tr>
     </tbody>
   </table>
 </div>

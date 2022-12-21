@@ -1,28 +1,38 @@
 package ru.geelbrains.spring.winter.market.entities;
 
 import jakarta.persistence.*;
+import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 import org.hibernate.annotations.CreationTimestamp;
-import org.hibernate.annotations.UpdateTimestamp;
+
 import java.time.LocalDateTime;
 
 @Entity
 @Data
-@Table(name = "products")
+@Table(name = "order_items")
 @NoArgsConstructor
-public class Product {
+@AllArgsConstructor
+public class OrderItem {
+
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "id")
     private Long id;
 
-    @Column(name = "title")
-    private String title;
+    @ManyToOne
+    @JoinColumn(name = "product_id")
+    private Product product;
 
     @ManyToOne
-    @JoinColumn(name = "category_id")
-    private Category category;
+    @JoinColumn(name = "order_id")
+    private Order order;
+
+    @Column(name = "quantity")
+    private int quantity;
+
+    @Column(name = "price_per_product")
+    private int pricePerProduct;
 
     @Column(name = "price")
     private int price;
@@ -31,7 +41,9 @@ public class Product {
     @Column(name = "created_at")
     private LocalDateTime createdAt;
 
-    @UpdateTimestamp
-    @Column
+    @CreationTimestamp
+    @Column(name = "updated_at")
     private LocalDateTime updatedAt;
+
+
 }
