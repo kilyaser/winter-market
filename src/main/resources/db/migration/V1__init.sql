@@ -12,12 +12,21 @@ create table products
     title           varchar(255),
     category_id     bigint references categories (id),
     price           int,
+    height          int,
+    weight          int,
+    description     varchar(255),
+    image           varchar(100),
     created_at      timestamp default current_timestamp,
     updated_at      timestamp default  current_timestamp
 );
 
-insert into products (title, price, category_id) values
-('Art-1', 80, 2), ('Art-2', 25, 2), ('Art-3', 300, 2);
+insert into products (title, price, category_id, height, weight, description, image) values
+('Bear', 800, 2, 50, 30, 'High-quality giclee print with nonfading ink on premium textured paper.', 'images/carts/bear.jpg'),
+('Cat hairstyle', 25, 2, 20, 20, 'High-quality giclee print with nonfading ink on premium textured paper.', 'images/carts/cat_hairstyle.jpg'),
+('Magic', 700, 2, 25, 25, 'High-quality giclee print with nonfading ink on premium textured paper.', 'images/carts/magic.jpg'),
+('Morning coffee', 700, 2, 25, 25, 'High-quality giclee print with nonfading ink on premium textured paper.', 'images/carts/morningcoffee.jpg'),
+('Peace', 500, 2, 30, 30, 'High-quality giclee print with nonfading ink on premium textured paper.', 'images/carts/peace.jpg'),
+('Submarine', 1000, 2, 30, 50, 'High-quality giclee print with nonfading ink on premium textured paper.', 'images/carts/submarine.jpg');
 
 create table users
 (

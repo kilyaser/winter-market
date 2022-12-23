@@ -1,8 +1,106 @@
+a {
+    text-decoration: none;
+    color: black;
+}
 .my-block-style {
-    background: #f6f2ee;
-
+    background: #f6eeee;
 }
 .my-text-style {
     margin-top: 70px;
-    padding-left: 100px;
 }
+
+.main-block {
+    background: #f6eeee;
+}
+
+.left_side_pick {
+    margin-top: 35px;
+    padding: 15px 15px;
+    border-radius: 35px;
+    background: #00bfff;
+    width: fit-content;
+    font-size: 25px;
+    font-family: arial, serif;
+    letter-spacing: 0.05em;
+}
+
+.left_side_pick:hover {
+    background: #00ace6;
+}
+
+.second_section_block {
+    background: #f6f2ee;
+    height: 300px;
+    list-style-type: none;
+    color: deepskyblue;
+    font-weight: bold;
+
+}
+.li_position {
+    align-self: center;
+    transition: 0.2s;
+}
+.section_block_text {
+    color: deepskyblue;
+    font-size: 50px;
+}
+
+.li_position:hover {
+    padding-bottom: 20px;
+    transition: 0.2s;
+}
+
+.title-cart {
+    font-size: 50px;
+    margin-bottom: 50px;
+    padding-top: 70px;
+    text-align: center;
+}
+
+.cart-style {
+    width: 35rem;
+}
+.cart-container {
+    background: #e5d9cd;
+}
+.card {
+    overflow: hidden;
+    width: 25rem;
+}
+.card-body {
+    overflow: hidden;
+}
+
+.card-img-top {
+    transition: 0.2s;
+}
+.card-img-top:hover {
+    transform: scale(1.2);
+    transition: 0.2s;
+}
+
+.footer-container {
+    background: #f4f6ee;
+}
+.accordion-button {
+    border-top: black;
+    border-bottom: black;
+}
+
+@media (max-width: 1399px) {
+    .card {
+        width: 25rem;
+    }
+}
+@media (max-width: 900px) {
+    .card {
+        width: 18rem;
+    }
+}
+
+@media (max-width: 600px) {
+    .card {
+        width: 20rem;
+    }
+}
+

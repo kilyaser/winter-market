@@ -27,6 +27,18 @@ public class Product {
     @Column(name = "price")
     private int price;
 
+    @Column(name = "height")
+    private int height;
+
+    @Column(name = "weight")
+    private int weight;
+
+    @Column(name = "description")
+    private String description;
+
+    @Column(name = "image")
+    private String image;
+
     @CreationTimestamp
     @Column(name = "created_at")
     private LocalDateTime createdAt;

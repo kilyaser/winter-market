@@ -14,7 +14,16 @@ import ru.geelbrains.spring.winter.market.soap.products.ProductSoapDto;
 public class ProductConverter {
     private final CategoryService categoryService;
     public ProductDto entityToDto(Product product) {
-        return new ProductDto(product.getId(), product.getTitle(), product.getPrice(), product.getCategory().getTitle());
+        ProductDto p = new ProductDto();
+        p.setId(product.getId());
+        p.setTitle(product.getTitle());
+        p.setPrice(product.getPrice());
+        p.setCategoryTitle(product.getCategory().getTitle());
+        p.setHeight(product.getHeight());
+        p.setWeight(product.getWeight());
+        p.setDescription(product.getDescription());
+        p.setImage(product.getImage());
+        return p;
     }
     public ProductSoapDto entityToSoapDto(Product product) {
         ProductSoapDto soapDto = new ProductSoapDto();
@@ -22,6 +31,10 @@ public class ProductConverter {
         soapDto.setCategoryTitle(product.getTitle());
         soapDto.setPrice(product.getPrice());
         soapDto.setTitle(product.getTitle());
+        soapDto.setHeight(product.getHeight());
+        soapDto.setWeight(product.getWeight());
+        soapDto.setDescription(product.getDescription());
+        soapDto.setImage(product.getImage());
         return soapDto;
     }
 
