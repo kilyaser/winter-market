@@ -3,7 +3,9 @@ package ru.geelbrains.spring.winter.market.servicies;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 import ru.geelbrains.spring.winter.market.converters.OrderItemConverter;
+import ru.geelbrains.spring.winter.market.dtos.CartDto;
 import ru.geelbrains.spring.winter.market.entities.Order;
 import ru.geelbrains.spring.winter.market.entities.OrderItem;
 import ru.geelbrains.spring.winter.market.entities.User;
@@ -20,22 +22,21 @@ import java.util.List;
 public class OrderService {
     private final CartService cartService;
     private final OrderItemConverter orderItemConverter;
-    private final OrderItemRepository orderItemRepository;
     private final OrderRepository orderRepository;
-    public Order creatOrder(User user) {
+
+    @Transactional
+    public void creatOrder(User user) {
         Cart cart = cartService.getCurrentCart();
         Order order = new Order();
         order.setUser(user);
         order.setTotalPrice(cart.getTotalPrice());
-        orderRepository.save(order);
+
         List<OrderItem> items = cart.getItems().stream().map(oi -> orderItemConverter.cartItemToOrderItem(oi, order)).toList();
-        orderItemRepository.saveAll(items);
         order.setItems(items);
         order.setCreatedAt(LocalDateTime.now());
         order.setUpdatedAt(LocalDateTime.now());
+        orderRepository.save(order);
+        cartService.clear();
 
-        return orderRepository.findById(order.getId()).orElseThrow(() -> new ResourceNotFoundException(String.format("Order id %s not found", order.getId())));
-
-        //формирование ордера
     }
 }
