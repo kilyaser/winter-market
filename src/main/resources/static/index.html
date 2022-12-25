@@ -39,22 +39,22 @@
         <li class="nav-item">
           <a class="nav-link" href="#">Контакты</a>
         </li>
-<!--        <li class="nav-item" ng-show="!isUserLoggedIn()">-->
-<!--          <form class="align-middle" ng-submit="tryToAuth()">-->
-<!--            <div class="input-group input-group-sm p-2">-->
-<!--              <input id="navLoginField" class="form-control" ng-model="user.username" type="text"-->
-<!--                    aria-describedby="inputGroup-sizing-sm" placeholder="login">-->
-<!--              <input id="navPasswordField" class="form-control ms-1" ng-model="user.password" type="password"-->
-<!--                     aria-describedby="inputGroup-sizing-sm" placeholder="password">-->
-<!--              <button id="navLoginSubmit" class="btn btn-outline-secondary btn-sm ms-1" type="submit">-->
-<!--                Sing in-->
-<!--              </button>-->
-<!--            </div>-->
-<!--          </form>-->
-<!--        </li>-->
-<!--        <li class="nav-item p-2" ng-show="isUserLoggedIn()">-->
-<!--          <button class="btn btn-outline-secondary btn-sm" ng-click="tryToLogout()">Sing out</button>-->
-<!--        </li>-->
+        <li class="nav-item" ng-show="!isUserLoggedIn()">
+          <form class="align-middle" ng-submit="tryToAuth()">
+            <div class="input-group input-group-sm p-2">
+              <input id="navLoginField" class="form-control" ng-model="user.username" type="text"
+                    aria-describedby="inputGroup-sizing-sm" placeholder="login">
+              <input id="navPasswordField" class="form-control ms-1" ng-model="user.password" type="password"
+                     aria-describedby="inputGroup-sizing-sm" placeholder="password">
+              <button id="navLoginSubmit" class="btn btn-outline-secondary btn-sm ms-1" type="submit">
+                Sing in
+              </button>
+            </div>
+          </form>
+        </li>
+        <li class="nav-item p-2" ng-show="isUserLoggedIn()">
+          <button class="btn btn-outline-secondary btn-sm" ng-click="tryToLogout()">Sing out</button>
+        </li>
       </ul>
     </div>
     <div class="collapse navbar-collapse position-relative multi-collapse" id="navbarNavCart">

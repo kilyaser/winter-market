@@ -3,6 +3,8 @@ package ru.geelbrains.spring.winter.market.controllers;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.web.bind.annotation.*;
+import ru.geelbrains.spring.winter.market.converters.CartConverter;
+import ru.geelbrains.spring.winter.market.dtos.CartDto;
 import ru.geelbrains.spring.winter.market.models.Cart;
 import ru.geelbrains.spring.winter.market.servicies.CartService;
 
@@ -12,15 +14,15 @@ import ru.geelbrains.spring.winter.market.servicies.CartService;
 @RequestMapping("/api/v1/cart")
 @Slf4j
 public class CartController {
-
+    private final CartConverter cartConverter;
     private final CartService cartService;
     @GetMapping("/add/{id}")
     public void addToCart(@PathVariable Long id) {
         cartService.add(id);
     }
     @GetMapping
-    public Cart getCurrentCart() {
-        return cartService.getCurrentCart();
+    public CartDto getCurrentCart() {
+        return cartConverter.entityToDto(cartService.getCurrentCart());
     }
     @GetMapping("/delete/{id}")
     public void deleteProductFromCart(@PathVariable Long id) {

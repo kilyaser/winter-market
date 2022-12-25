@@ -47,9 +47,10 @@ angular.module('app', ['ngStorage']).controller('cartController', function ($sco
     $scope.createOrder = function () {
         $http.post(orderContextPath)
             .then(function (response) {
-                $scope.deleteAllFromCart();
+                // $scope.deleteAllFromCart();
+                alert("Заказ оформлен");
                 $scope.loadOrders();
-                    //$scope.loadOrders()
+                $scope.loadCart();
             });
     };
 
