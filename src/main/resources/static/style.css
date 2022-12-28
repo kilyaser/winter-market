@@ -56,6 +56,10 @@ a {
     padding-top: 70px;
     text-align: center;
 }
+.filter-container {
+    display: flex;
+    background: #eef6f2;
+}
 
 .cart-style {
     width: 35rem;
