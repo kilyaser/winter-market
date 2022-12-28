@@ -3,12 +3,28 @@ angular.module('app', ['ngStorage']).controller('indexController', function ($sc
     const cartContextPath = 'http://localhost:8189/winter/api/v1/cart'
     const authPath = 'http://localhost:8189/winter/auth'
 
-    $scope.loadProducts = function () {
-        $http.get(contextPath)
-            .then(function (response) {
-                $scope.productsList = response.data;
+    // $scope.loadProducts = function () {
+    //     $http.get(contextPath)
+    //         .then(function (response) {
+    //             $scope.productsList = response.data;
+    //     });
+    // };
+
+    $scope.loadProducts = function (pageIndex = 1) {
+        $http({
+            url: contextPath,
+            method: 'GET',
+            params: {
+                title_part: $scope.filter ? $scope.filter.title_part : null,
+                min_price: $scope.filter ? $scope.filter.min_price : null,
+                max_price: $scope.filter ? $scope.filter.max_price : null
+            }
+        }).then(function (response) {
+            $scope.productsPage = response.data.content;
         });
     };
+
+
 
     $scope.loadCart = function () {
         $http.get(cartContextPath)
@@ -75,20 +91,4 @@ angular.module('app', ['ngStorage']).controller('indexController', function ($sc
     $scope.loadCart();
     $scope.loadProducts();
 
-//
-//     $scope.loadProducts = function (pageIndex = 1) {
-//         $http({
-//             url: contextPath + '/products',
-//             method: 'GET',
-//             params: {
-//                 title_part: $scope.filter ? $scope.filter.title_part : null,
-//                 min_price: $scope.filter ? $scope.filter.min_price : null,
-//                 max_price: $scope.filter ? $scope.filter.max_price : null
-//             }
-//         }).then(function (response) {
-//             $scope.ProductsPage = response.data;
-//         });
-//     };
-//
-//     $scope.loadProducts();
 });
