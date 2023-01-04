@@ -39,4 +39,11 @@ public class OrderService {
         cartService.clear();
 
     }
+
+    public List<Order> getAll() {
+        return orderRepository.findAll().stream().toList();
+    }
+    public List<Order> getAllOrdersByUser(User user) {
+        return orderRepository.findAllByUser(user).stream().toList();
+    }
 }
