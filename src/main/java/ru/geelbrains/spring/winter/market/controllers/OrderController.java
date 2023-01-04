@@ -36,8 +36,9 @@ public class OrderController {
 
     @GetMapping
     public List<OrderDto> getOrders(Principal principal) {
-        return orderRepository.findAll().stream().map(orderConverter::entityToDto).toList();
-
+        log.info("getAll orders controllers was required");
+        User user = userService.findByUsername(principal.getName()).orElseThrow(() -> new ResourceNotFoundException(String.format("User with username: %s not found", principal.getName())));
+        return orderService.getAllOrdersByUser(user).stream().map(orderConverter::entityToDto).toList();
     }
 
 }

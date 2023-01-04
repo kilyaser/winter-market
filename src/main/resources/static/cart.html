@@ -96,11 +96,14 @@
     <tbody>
     <tr ng-repeat="o in orders">
       <td>{{o.id}}</td>
-      <td></td>
+      <td>{{o.items[0].quantity}}</td>
       <td>{{o.totalPrice}}</td>
      </tr>
     </tbody>
   </table>
+  <div>
+    <button type="button" class="btn btn-success" data-bs-toggle="tooltip" data-bs-placement="right" title="load order" ng-click="loadOrders()">Load Order</button>
+  </div>
 </div>
 </body>
 </html>

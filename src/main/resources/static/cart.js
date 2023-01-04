@@ -10,7 +10,7 @@ angular.module('app', ['ngStorage']).controller('cartController', function ($sco
     };
 
     $scope.loadOrders = function () {
-        $http.get(cartContextPath)
+        $http.get(orderContextPath)
             .then(function (response) {
                 $scope.orders = response.data;
                 console.log(response.data);
