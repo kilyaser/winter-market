@@ -28,7 +28,6 @@ public class OrderController {
     @PostMapping
     @ResponseStatus(HttpStatus.CREATED)
     public void creatOrder(Principal principal, @RequestBody(required = false) OrderData orderData) {
-        log.info("Сработа orderController user {}", principal.getName());
         User user = userService.findByUsername(principal.getName())
                 .orElseThrow(() -> new ResourceNotFoundException(String.format("User with username: %s not found", principal.getName())));
         orderService.creatOrder(user);
@@ -36,7 +35,6 @@ public class OrderController {
 
     @GetMapping
     public List<OrderDto> getOrders(Principal principal) {
-        log.info("getAll orders controllers was required");
         User user = userService.findByUsername(principal.getName()).orElseThrow(() -> new ResourceNotFoundException(String.format("User with username: %s not found", principal.getName())));
         return orderService.getAllOrdersByUser(user).stream().map(orderConverter::entityToDto).toList();
     }

@@ -30,7 +30,6 @@ angular.module('app', ['ngStorage']).controller('indexController', function ($sc
         $http.get(cartContextPath)
             .then(function (response) {
                 $scope.cart = response.data;
-
         });
     };
 
@@ -40,6 +39,13 @@ angular.module('app', ['ngStorage']).controller('indexController', function ($sc
                 $scope.loadCart();
             });
     };
+
+    $scope.productHtmlPage = function (productId) {
+        if ($localStorage.productHtml) {
+            delete $localStorage.productHtml;
+        }
+        $localStorage.productHtml = productId;
+    }
 //========== Authorization code ==============================
     $scope.tryToAuth = function () {
         $http.post(authPath, $scope.user)
