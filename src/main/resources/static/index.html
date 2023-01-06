@@ -55,13 +55,19 @@
         <li class="nav-item p-2" ng-show="isUserLoggedIn()">
           <button class="btn btn-outline-secondary btn-sm" ng-click="tryToLogout()">Sing out</button>
         </li>
+
       </ul>
     </div>
-    <div class="collapse navbar-collapse position-relative multi-collapse" id="navbarNavCart">
-      <a  href="cart.html" target="_blank">
-        <img src="images/basket.svg" alt="basket" class="position-absolute top-50 start-50 translate-middle">
-        <span class="position-absolute bottom-50 end-50 translate-middle badge rounded-pill bg-secondary">{{cart.totalPrice}}</span>
-      </a>
+    <div class="collapse navbar-collapse  multi-collapse d-flex justify-content-end">
+      <div class="cart-logo  nav-item">
+        <a class="nav-link"  href="cart.html" target="_blank">
+          <img src="images/basket.svg" alt="basket" >
+          <span class="badge rounded-pill bg-secondary">{{cart.items.length}}</span>
+        </a>
+      </div>
+      <div class="instagram-block nav-item">
+        <a class="instagram nav-link" href="https://www.instagram.com/sams_olka/" target="_blank">Instagram</a>
+      </div>
     </div>
 
   </div>
@@ -124,7 +130,7 @@
     <div><h1 class="fw-bold title-cart">Featured Artworks</h1></div>
   <div class="row d-flex justify-content-between card-border">
     <div class="card mb-5 "  ng-repeat="p in productsPage">
-      <a href="#"><img src="{{p.image}}" class="card-img-top" alt="..."></a>
+      <a href="product.html" ng-click="productHtmlPage(p.id)"><img src="{{p.image}}" class="card-img-top" alt="..."></a>
       <div class="card-body">
         <h5 class="card-title">{{p.title}}</h5>
         <p class="card-text">{{p.price}} rub. </p>
