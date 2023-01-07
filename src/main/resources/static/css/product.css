@@ -1,0 +1,60 @@
+
+a {
+    text-decoration: none;
+}
+div a {
+    color: darkgray;
+}
+
+.main-block {
+    margin-top: 200px;
+}
+.main-image {
+    overflow: hidden;
+}
+
+.img-thumbnail {
+    max-width: 600px;
+    max-height: 600px;
+    transition: 0.2s;
+}
+
+.img-thumbnail:hover {
+    transform: scale(1.2);
+    transition: 0.2s;
+}
+.product-details {
+    margin-left: 20px;
+    max-width: 300px;
+}
+.text {
+    color: darkgray;
+}
+div a:hover {
+    color: gray;
+}
+
+.price::after {
+    content: " руб.";
+}
+.like {
+    margin-left: 10px;
+}
+
+.rounded {
+    max-width: 100px;
+    max-height: 100px;
+    transition: 0.2s;
+}
+.rounded:hover {
+    transform: scale(1.2);
+    transition: 0.2s;
+}
+.mini-image {
+    overflow: hidden;
+}
+
+.mini-text {
+    color: black;
+    text-align: center;
+}
