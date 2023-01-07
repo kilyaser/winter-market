@@ -11,8 +11,8 @@
 
     <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.8.0/angular.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/ngStorage/0.3.11/ngStorage.min.js"></script>
-    <script src="product.js"></script>
-    <link rel="stylesheet" href="product.css">
+    <script src="js/product.js"></script>
+    <link rel="stylesheet" href="css/product.css">
     <title>Product page</title>
 </head>
 
@@ -28,16 +28,16 @@
         <div class="collapse navbar-collapse multi-collapse" id="navbarNav">
             <ul class="navbar-nav">
                 <li class="nav-item">
-                    <a class="nav-link" aria-current="page" href="#">Главная</a>
+                    <a class="nav-link" aria-current="page" href="index.html">Главная</a>
                 </li>
                 <li class="nav-item">
                     <a class="nav-link" href="#">Магазин</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" href="#painter-block">О нас</a>
+                    <a class="nav-link" href="index.html#painter-block">О нас</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" href="#contact&support">Контакты</a>
+                    <a class="nav-link" href="index.html#contact&support">Контакты</a>
                 </li>
 
             </ul>
@@ -46,14 +46,40 @@
 </nav>
     <div class="container">
         <div class="main-block d-flex ">
-            <div>
+            <div class="main-image">
                 <img class="img-thumbnail" src="{{product.image}}" alt="image">
             </div>
             <div class="product-details">
-                <p class="fs-4"> {{product.title}}</p>
-
+                <p class="fs-4 fw-bold"> {{product.title}}</p>
+                <a href="index.html">Home</a><span class="text">&nbsp;/</span>
+                <a href="#">Store</a><span class="text">&nbsp;/</span>
+                <a href="#">Print</a>
+                <br><br>
+                <p class="fs-4 price">{{product.price}}</p>
+                <p></p>
+                <div class="btn btn-dark">Add to Bag</div>
+                <br><br>
+                <p class="fs-5">Product details</p>
+                <p class="lh-base">{{product.description}}</p>
+                <p class="lh-base">Size:&nbsp;{{product.weight}}&nbsp;x&nbsp;{{product.height}}</p>
             </div>
 
+        </div>
+        <br><br>
+        <div>
+            <h2 class="like">You May Also Like</h2>
+            <br>
+            <div class="container">
+                <div class="d-flex">
+                    <div class="mini-cart ms-2" ng-repeat="p in productsPage">
+                        <div class="mini-image">
+                            <a href="product.html" ng-click="productHtmlPage(p.id)"><img class="rounded" src="{{p.image}}" alt="image">
+                            <div class="mini-text">{{p.title}}</div>
+                            <div class="mini-text">{{p.price}}</div></a>
+                        </div>
+                    </div>
+                </div>
+            </div>
         </div>
 
 

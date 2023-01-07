@@ -10,6 +10,25 @@ angular.module('app', ['ngStorage']).controller('productController', function ($
             });
     };
 
+    $scope.loadProducts = function (pageIndex = 1) {
+        $http({
+            url: contextPath,
+            method: 'GET',
+            params: {
+                title_part: $scope.filter ? $scope.filter.title_part : null,
+                min_price: $scope.filter ? $scope.filter.min_price : null,
+                max_price: $scope.filter ? $scope.filter.max_price : null
+            }
+        }).then(function (response) {
+            $scope.productsPage = response.data.content;
+        });
+    };
+
+    $scope.productHtmlPage = function (productId) {
+        $localStorage.productHtml = productId;
+    }
+
+
     if ($localStorage.winterMarketUser) {
         try {
             let jwt = $localStorage.winterMarketUser.token;
@@ -26,5 +45,6 @@ angular.module('app', ['ngStorage']).controller('productController', function ($
     };
 
     $scope.getProduct();
+    $scope.loadProducts();
 
 });

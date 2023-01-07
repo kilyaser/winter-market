@@ -41,9 +41,6 @@ angular.module('app', ['ngStorage']).controller('indexController', function ($sc
     };
 
     $scope.productHtmlPage = function (productId) {
-        if ($localStorage.productHtml) {
-            delete $localStorage.productHtml;
-        }
         $localStorage.productHtml = productId;
     }
 //========== Authorization code ==============================
