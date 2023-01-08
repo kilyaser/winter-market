@@ -5,6 +5,24 @@ a {
 div a {
     color: darkgray;
 }
+.badge {
+    padding-top: 13px;
+}
+
+.instagram {
+    border: 1px solid #000000;
+    border-radius: 30px;
+    margin-right: 50px;
+    margin-top: 10px;
+    font-size: 25px;
+    margin-left: 20px;
+    padding: 1px 20px;
+}
+
+.instagram:hover {
+    background: black;
+    color: white;
+}
 
 .main-block {
     margin-top: 200px;
@@ -20,8 +38,9 @@ div a {
 }
 
 .img-thumbnail:hover {
-    transform: scale(1.2);
+    transform: scale(1.6);
     transition: 0.2s;
+
 }
 .product-details {
     margin-left: 20px;
@@ -42,8 +61,8 @@ div a:hover {
 }
 
 .rounded {
-    max-width: 100px;
-    max-height: 100px;
+    max-width: 150px;
+    max-height: 150px;
     transition: 0.2s;
 }
 .rounded:hover {
@@ -57,4 +76,5 @@ div a:hover {
 .mini-text {
     color: black;
     text-align: center;
+    overflow: hidden;
 }

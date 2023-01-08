@@ -10,14 +10,20 @@ a {
 }
 
 
+.badge {
+    padding-top: 13px;
+}
+
 .instagram {
     border: 1px solid #000000;
-    padding: 5px 20px;
     border-radius: 30px;
     margin-right: 50px;
+    margin-top: 10px;
     font-size: 25px;
     margin-left: 20px;
+    padding: 1px 20px;
 }
+
 .instagram:hover {
     background: black;
     color: white;

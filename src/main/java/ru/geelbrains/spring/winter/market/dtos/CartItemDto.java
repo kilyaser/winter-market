@@ -15,5 +15,6 @@ public class CartItemDto {
     private int quantity;
     private BigDecimal pricePerProduct;
     private BigDecimal price;
+    private String image;
 
 }
