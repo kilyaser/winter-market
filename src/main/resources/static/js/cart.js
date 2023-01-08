@@ -6,6 +6,7 @@ angular.module('app', ['ngStorage']).controller('cartController', function ($sco
         $http.get(cartContextPath)
             .then(function (response) {
                 $scope.cart = response.data;
+                console.log(response.data);
         });
     };
 
@@ -53,6 +54,10 @@ angular.module('app', ['ngStorage']).controller('cartController', function ($sco
                 $scope.loadCart();
             });
     };
+
+    $scope.productHtmlPage = function (productId) {
+        $localStorage.productHtml = productId;
+    }
 
 
     if ($localStorage.winterMarketUser) {
