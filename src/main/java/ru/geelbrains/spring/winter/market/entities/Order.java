@@ -29,7 +29,7 @@ public class Order {
     @OneToMany(mappedBy = "order", cascade = CascadeType.PERSIST)
     private List<OrderItem> items;
 
-    @Column(name = "total_price")
+    @Column(name = "total_price", scale = 2)
     private BigDecimal totalPrice;
 
     @Column(name = "address")

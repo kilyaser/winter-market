@@ -35,7 +35,7 @@ public class OrderItem {
     @Column(name = "price_per_product")
     private BigDecimal pricePerProduct;
 
-    @Column(name = "price")
+    @Column(name = "price", scale = 2)
     private BigDecimal price;
 
     @CreationTimestamp

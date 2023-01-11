@@ -41,8 +41,6 @@ angular.module('app', ['ngStorage']).controller('productController', function ($
             });
     };
 
-
-
     if ($localStorage.winterMarketUser) {
         try {
             let jwt = $localStorage.winterMarketUser.token;

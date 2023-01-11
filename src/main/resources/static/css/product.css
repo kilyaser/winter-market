@@ -23,6 +23,9 @@ div a {
     background: black;
     color: white;
 }
+.container, .site {
+    background: #f6f2ee;
+}
 
 .main-block {
     margin-top: 200px;
@@ -45,6 +48,10 @@ div a {
 .product-details {
     margin-left: 20px;
     max-width: 300px;
+}
+
+.btn-dark {
+    padding: 10px 35px;
 }
 .text {
     color: darkgray;
@@ -77,4 +84,18 @@ div a:hover {
     color: black;
     text-align: center;
     overflow: hidden;
+}
+
+
+.footer-block {
+    margin-top: 100px;
+}
+
+.img-block {
+    align-self: center;
+}
+
+.footer-logo {
+    margin-left: 100px;
+    margin-bottom: 100px;
 }
