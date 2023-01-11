@@ -10,7 +10,7 @@ div a {
 }
 
 .instagram {
-    border: 1px solid #000000;
+    border: 1px solid gray;
     border-radius: 30px;
     margin-right: 50px;
     margin-top: 10px;
@@ -22,6 +22,9 @@ div a {
 .instagram:hover {
     background: black;
     color: white;
+}
+.container, .site {
+    background: #f6f2ee;
 }
 
 .main-block {
@@ -45,6 +48,10 @@ div a {
 .product-details {
     margin-left: 20px;
     max-width: 300px;
+}
+
+.btn-dark {
+    padding: 10px 35px;
 }
 .text {
     color: darkgray;
@@ -77,4 +84,18 @@ div a:hover {
     color: black;
     text-align: center;
     overflow: hidden;
+}
+
+
+.footer-block {
+    margin-top: 100px;
+}
+
+.img-block {
+    align-self: center;
+}
+
+.footer-logo {
+    margin-left: 100px;
+    margin-bottom: 100px;
 }

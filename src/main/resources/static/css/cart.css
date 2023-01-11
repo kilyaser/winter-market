@@ -21,7 +21,7 @@ a {
 }
 
 .instagram {
-    border: 1px solid #000000;
+    border: 1px solid gray;
     border-radius: 30px;
     margin-right: 50px;
     margin-top: 10px;
@@ -64,10 +64,27 @@ a {
     width: 50px;
 }
 .totalPrice-block::after {
-    content: " руб.";
+    content: " rub.";
+}
+
+.btn-dark {
+    padding: 10px 35px;
 }
 .delete-button {
     margin-left: 10px;
     margin-top: 12px;
+}
+
+.footer-block {
+    margin-top: 100px;
+}
+
+.img-block {
+    align-self: center;
+}
+
+.footer-logo {
+    margin-left: 100px;
+    margin-bottom: 100px;
 }
 
