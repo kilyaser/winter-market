@@ -5,7 +5,6 @@ import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 import org.hibernate.annotations.CreationTimestamp;
-
 import java.math.BigDecimal;
 import java.time.LocalDateTime;
 
@@ -35,7 +34,7 @@ public class OrderItem {
     @Column(name = "price_per_product")
     private BigDecimal pricePerProduct;
 
-    @Column(name = "price", scale = 2)
+    @Column(name = "price")
     private BigDecimal price;
 
     @CreationTimestamp

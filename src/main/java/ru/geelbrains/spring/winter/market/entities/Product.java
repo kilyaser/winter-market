@@ -26,7 +26,7 @@ public class Product {
     @JoinColumn(name = "category_id")
     private Category category;
 
-    @Column(name = "price", scale = 2)
+    @Column(name = "price")
     private BigDecimal price;
 
     @Column(name = "height")

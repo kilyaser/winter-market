@@ -5,7 +5,6 @@ import lombok.extern.slf4j.Slf4j;
 import org.springframework.web.bind.annotation.*;
 import ru.geelbrains.spring.winter.market.converters.CartConverter;
 import ru.geelbrains.spring.winter.market.dtos.CartDto;
-import ru.geelbrains.spring.winter.market.models.Cart;
 import ru.geelbrains.spring.winter.market.servicies.CartService;
 
 

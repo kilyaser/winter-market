@@ -38,12 +38,12 @@ public class ProductConverter {
         return soapDto;
     }
 
-    public Product dtoToEntity(ProductDto productDto) {
+    public Product dtoToEntity(ProductDto product) {
         Product p = new Product();
-        p.setId(productDto.getId());
-        p.setTitle(productDto.getTitle());
-        p.setPrice(productDto.getPrice());
-        Category category = categoryService.findByTitle(productDto.getCategoryTitle()).orElseThrow(() -> new ResourceNotFoundException("Category not found"));
+        p.setId(product.getId());
+        p.setTitle(product.getTitle());
+        p.setPrice(product.getPrice());
+        Category category = categoryService.findByTitle(product.getCategoryTitle()).orElseThrow(() -> new ResourceNotFoundException("Category not found"));
         p.setCategory(category);
         return p;
     }

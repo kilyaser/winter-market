@@ -9,7 +9,6 @@ import ru.geelbrains.spring.winter.market.dtos.OrderDto;
 import ru.geelbrains.spring.winter.market.entities.User;
 import ru.geelbrains.spring.winter.market.exceptions.ResourceNotFoundException;
 import ru.geelbrains.spring.winter.market.models.OrderData;
-import ru.geelbrains.spring.winter.market.repositories.OrderRepository;
 import ru.geelbrains.spring.winter.market.servicies.OrderService;
 import ru.geelbrains.spring.winter.market.servicies.UserService;
 import java.security.Principal;
@@ -22,7 +21,6 @@ import java.util.List;
 public class OrderController {
     private final UserService userService;
     private final OrderService orderService;
-    private final OrderRepository orderRepository;
     private final OrderConverter orderConverter;
 
     @PostMapping
