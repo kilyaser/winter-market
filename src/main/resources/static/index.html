@@ -136,13 +136,16 @@
   <div class="container-fluid cart-container" id="cartContainer">
     <div class="container">
       <div><h1 class="fw-bold title-cart">Featured Artworks</h1></div>
-    <div class="row d-flex justify-content-between card-border">
-      <div class="card mb-5 "  ng-repeat="p in productsPage">
-        <a href="product.html" ng-click="productHtmlPage(p.id)"><img src="{{p.image}}" class="card-img-top" alt="..."></a>
-        <div class="card-body">
-          <h5 class="card-title">{{p.title}}</h5>
-          <p class="card-text">{{p.price}} rub. </p>
-          <a href="#" class="btn btn-primary" ng-click="addToCart(p.id)">Pre order</a>
+
+    <div class="d-flex justify-content-between flex-wrap">
+      <div class="ms-4 mt-5"  ng-repeat="p in productsPage">
+        <div class="border-overflow">
+          <a href="product.html" ng-click="productHtmlPage(p.id)"><img src="{{p.image}}" class="card-img" alt="..."></a>
+        </div>
+        <div class="card-body d-flex flex-column justify-content-center mb-5">
+          <h5 class="card-title mt-2"><a href="product.html" ng-click="productHtmlPage(p.id)">{{p.title}}</a></h5>
+          <p class="card-text mt-2"><a href="product.html" ng-click="productHtmlPage(p.id)">{{p.price}} rub. </a></a></p>
+          <a class="add-href fw-bolder" href="product.html" ng-click="productHtmlPage(p.id)">Pre order</a>
         </div>
       </div>
 

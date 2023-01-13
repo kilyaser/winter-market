@@ -42,8 +42,8 @@ public class ProductService {
     public void deleteById(Long id) {
         productRepository.deleteById(id);
     }
-    public Product createNewProduct(ProductDto productDto) {
-        Product p = productConverter.dtoToEntity(productDto);
+    public Product createNewProduct(ProductDto product) {
+        Product p = productConverter.dtoToEntity(product);
         productRepository.save(p);
         return p;
     }
