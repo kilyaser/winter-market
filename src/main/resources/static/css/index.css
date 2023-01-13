@@ -87,20 +87,21 @@ a {
 .cart-container {
     background: #e5d9cd;
 }
-.card {
-    overflow: hidden;
-    width: 25rem;
-}
-.card-body {
+.border-overflow {
     overflow: hidden;
 }
 
-.card-img-top {
+.card-img {
+    max-width: 400px;
+    max-height: 400px;
     transition: 0.2s;
 }
-.card-img-top:hover {
+.card-img:hover {
     transform: scale(1.2);
     transition: 0.2s;
+}
+.card-title, .card-text, .add-href {
+    align-self: center;
 }
 
 .footer-container {

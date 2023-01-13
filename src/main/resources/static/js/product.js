@@ -32,7 +32,9 @@ angular.module('app', ['ngStorage']).controller('productController', function ($
         $http.get(cartContextPath + '/add/' + productId)
             .then(function (response) {
                 $scope.loadCart();
+                $scope.buttonAction();
             });
+
     };
     $scope.loadCart = function () {
         $http.get(cartContextPath)
@@ -59,5 +61,14 @@ angular.module('app', ['ngStorage']).controller('productController', function ($
     $scope.getProduct();
     $scope.loadProducts();
     $scope.loadCart();
+    $scope.data = {visible : true};
+
+    $scope.buttonAction = function () {
+        let btn = angular.element(document.querySelector(".mx-auto > .add-btn")).text("V");
+
+        btn.removeClass("btn-dark").addClass("btn-light");
+        btn.text("Pre-Order")
+        $scope.data = {visible : false};
+    };
 
 });

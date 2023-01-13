@@ -75,7 +75,11 @@
                 <br><br>
                 <p class="fs-4 price">{{product.price}}</p>
                 <p></p>
-                <div class="btn btn-dark" ng-click="addToCart(product.id)">Add to Bag</div>
+                <div class="d-grid gap-2 mx-auto">
+                    <button class="btn btn-dark add-btn" ng-click="addToCart(product.id)">Add to Bag</button>
+                    <a href="cart.html" class="btn btn-dark" type="button" ng-hide="data.visible">Go to Checkout</a>
+                </div>
+
                 <br><br>
                 <p class="fs-5">Product details</p>
                 <p class="lh-base">{{product.description}}</p>
