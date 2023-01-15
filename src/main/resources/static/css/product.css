@@ -61,7 +61,7 @@ div a:hover {
 }
 
 .price::after {
-    content: " руб.";
+    content: " rub.";
 }
 .like {
     margin-left: 10px;

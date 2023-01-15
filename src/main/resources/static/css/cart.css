@@ -12,8 +12,8 @@ a {
     color: gray;
 }
 .cart-img {
-    max-height: 50px;
-    max-width: 50px;
+    max-height: 70px;
+    max-width: 70px;
 }
 
 .badge {
@@ -34,23 +34,26 @@ a {
     background: black;
     color: white;
 }
-.shopping-cart {
-    margin-top: 100px;
-}
 
 .title-block {
-    width: 130px;
+    max-width: 150px;
     margin-left: 10px;
 }
 
-.cart-left-side {
-    max-width: 400px;
+.cart-main-page {
+    margin-top: 100px;
 }
+
+.cart-left-side {
+    max-width: 500px;
+}
+
+
 .cart-items {
     margin-top: 5px;
 }
 .button-change {
-    padding-top: 5px;
+    padding-top: 8px;
 }
 
 .item-quantity {
@@ -61,7 +64,11 @@ a {
 .item-price {
     margin-left: 20px;
     margin-top: 12px;
-    width: 50px;
+    max-width: 80px;
+}
+
+.item-price::after {
+    content: " rub.";
 }
 .totalPrice-block::after {
     content: " rub.";
@@ -71,10 +78,15 @@ a {
     padding: 10px 35px;
 }
 
+.btn-submit {
+    padding: 10px 100px;
+}
+
 
 .delete-button {
     margin-left: 10px;
     margin-top: 12px;
+    padding-top: 5px;
 }
 
 .footer-block {
