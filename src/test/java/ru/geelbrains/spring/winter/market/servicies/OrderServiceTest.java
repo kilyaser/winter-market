@@ -26,11 +26,12 @@ class OrderServiceTest {
     @Test
     void creatOrder() {
         CartService mock = Mockito.mock(CartService.class);
-        Mockito.when(mock.getCurrentCart()).thenReturn(getCurrentCartForTest());
-
         User user = getUserForTest(1L);
+        Mockito.when(mock.getCurrentCart(user.getUsername())).thenReturn(getCurrentCartForTest());
 
-        given(cartService.getCurrentCart()).willReturn(getCurrentCartForTest());
+
+
+        given(cartService.getCurrentCart(user.getUsername())).willReturn(getCurrentCartForTest());
 
         orderService.creatOrder(user);
         List<Order> orders = orderService.getAllOrdersByUser(user);

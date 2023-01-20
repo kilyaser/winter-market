@@ -23,7 +23,7 @@ public class OrderService {
 
     @Transactional
     public void creatOrder(User user) {
-        Cart cart = cartService.getCurrentCart();
+        Cart cart = cartService.getCurrentCart(user.getUsername());
         Order order = new Order();
         order.setUser(user);
         order.setTotalPrice(cart.getTotalPrice());
@@ -33,7 +33,7 @@ public class OrderService {
         order.setCreatedAt(LocalDateTime.now());
         order.setUpdatedAt(LocalDateTime.now());
         orderRepository.save(order);
-        cartService.clear();
+        cartService.clear(user.getUsername());
 
     }
 

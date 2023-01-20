@@ -26,7 +26,9 @@ insert into products (title, price, category_id, height, weight, description, im
 ('Magic', 700.7, 2, 25, 25, 'High-quality giclee print with nonfading ink on premium textured paper.', 'images/carts/magic.jpg'),
 ('Morning coffee', 700, 2, 25, 25, 'High-quality giclee print with nonfading ink on premium textured paper.', 'images/carts/morningcoffee.jpg'),
 ('Peace', 500, 2, 30, 30, 'High-quality giclee print with nonfading ink on premium textured paper.', 'images/carts/peace.jpg'),
-('Submarine', 1000, 2, 30, 50, 'High-quality giclee print with nonfading ink on premium textured paper.', 'images/carts/submarine.jpg');
+('Submarine', 1000, 2, 30, 50, 'High-quality giclee print with nonfading ink on premium textured paper.', 'images/carts/submarine.jpg'),
+('Zhulka', 2000, 1, 30, 50, 'HA book that describes the adventures of a kind and small dog Zhulka', 'images/carts/zhulka.jpg'),
+('Dinner with friends', 400, 2, 40, 50, 'High-quality giclee print with nonfading ink on premium textured paper.', 'images/carts/dinner.jpg');
 
 create table users
 (

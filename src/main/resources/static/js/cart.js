@@ -3,7 +3,7 @@ angular.module('app', ['ngStorage']).controller('cartController', function ($sco
     const orderContextPath = 'http://localhost:8189/winter/api/v1/orders'
 
     $scope.loadCart = function () {
-        $http.get(cartContextPath)
+        $http.get(cartContextPath + '/' + $localStorage.winterMarketGuestCartId)
             .then(function (response) {
                 $scope.cart = response.data;
                 console.log(response.data);
@@ -19,26 +19,26 @@ angular.module('app', ['ngStorage']).controller('cartController', function ($sco
     };
 
     $scope.addToCart = function (productId) {
-        $http.get(cartContextPath + '/add/' + productId)
+        $http.get(cartContextPath + '/' + $localStorage.winterMarketGuestCartId + '/add/' + productId)
             .then(function (response) {
                 $scope.loadCart();
             });
     };
 
     $scope.deleteProductFromCart = function (productId) {
-        $http.get(cartContextPath + '/delete/' + productId)
+        $http.get(cartContextPath + '/' + $localStorage.winterMarketGuestCartId + '/delete/' + productId)
             .then(function (response) {
                 $scope.loadCart();
             });
     };
     $scope.deleteAllQuantityFromCart = function (productId) {
-        $http.get(cartContextPath + '/deleteQuantity/' + productId)
+        $http.get(cartContextPath + '/' + $localStorage.winterMarketGuestCartId + '/deleteQuantity/' + productId)
             .then(function (response) {
                 $scope.loadCart();
             });
     };
     $scope.deleteAllFromCart = function () {
-        $http.get(cartContextPath + '/clear')
+        $http.get(cartContextPath + '/' + $localStorage.winterMarketGuestCartId + '/clear')
             .then(function (response) {
                 $scope.loadCart();
         });
@@ -60,7 +60,7 @@ angular.module('app', ['ngStorage']).controller('cartController', function ($sco
     }
 
 
-    if ($localStorage.winterMarketUser) {
+    if (!$localStorage.winterMarketUser) {
         try {
             let jwt = $localStorage.winterMarketUser.token;
             let payload = JSON.parse(atob(jwt.split('.')[1]));
@@ -74,7 +74,12 @@ angular.module('app', ['ngStorage']).controller('cartController', function ($sco
         }
         $http.defaults.headers.common.Authorization = 'Bearer ' + $localStorage.winterMarketUser.token;
     };
-
+    if ($localStorage.winterMarketGuestCartId) {
+        $http.get(cartContextPath + "/generate_uuid")
+            .then(function successCallback(response) {
+                $localStorage.winterMarketGuestCartId = response.data.value;
+            })
+    }
     $scope.loadCart();
     $scope.loadOrders()
 

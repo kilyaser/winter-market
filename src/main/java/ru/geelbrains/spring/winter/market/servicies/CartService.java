@@ -3,10 +3,14 @@ package ru.geelbrains.spring.winter.market.servicies;
 import jakarta.annotation.PostConstruct;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Service;
 import ru.geelbrains.spring.winter.market.models.Cart;
 import ru.geelbrains.spring.winter.market.entities.Product;
 import ru.geelbrains.spring.winter.market.exceptions.ResourceNotFoundException;
+
+import java.util.HashMap;
+import java.util.Map;
 
 
 @Service
@@ -14,29 +18,35 @@ import ru.geelbrains.spring.winter.market.exceptions.ResourceNotFoundException;
 @Slf4j
 public class CartService {
     private final ProductService productService;
-    private Cart tempCart;
+    @Value("${cart-service.cart-prefix}")
+    private String cartPrefix;
+    private Map<String, Cart> carts;
 
-    public void add(Long id) {
+    public void add(String uuid, Long id) {
         Product product = productService.findById(id).orElseThrow(() -> new ResourceNotFoundException(String.format("Can't add product to the cart, product id:%s not found", id)));
-        tempCart.add(product);
-        log.info("tempCart size after adding " + tempCart.getItems().size());
+        getCurrentCart(uuid).add(product);
+        log.info("tempCart size after adding " + getCurrentCart(uuid).getItems().size());
     }
 
-    public void deleteProductFromCart(Long id) {
-        tempCart.remove(id);
+    public void deleteProductFromCart(String uuid, Long id) {
+        getCurrentCart(uuid).remove(id);
     }
-    public void deleteAllQuantity(Long id) {
-        tempCart.removeAllQuantity(id);
+    public void deleteAllQuantity(String uuid, Long id) {
+        getCurrentCart(uuid).removeAllQuantity(id);
     }
-    public Cart getCurrentCart() {
-        return tempCart;
+    public Cart getCurrentCart(String uuid) {
+        String targetUuid = cartPrefix + uuid;
+        if (!carts.containsKey(targetUuid)) {
+            carts.put(targetUuid, new Cart());
+        }
+        return carts.get(targetUuid);
     }
-    public void clear() {
-        tempCart.clear();
+    public void clear(String uuid) {
+        getCurrentCart(uuid).clear();
     }
 
     @PostConstruct
     public void init() {
-        tempCart = new Cart();
+        carts = new HashMap<>();
     }
 }
