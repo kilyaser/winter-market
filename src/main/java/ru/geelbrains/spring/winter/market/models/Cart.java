@@ -48,7 +48,7 @@ public class Cart {
     }
     public void clear() {
         items.clear();
-        totalPrice = BigDecimal.ZERO.setScale(2, RoundingMode.HALF_UP);
+        totalPrice = BigDecimal.ZERO;
     }
     public void removeAllQuantity(Long id) {
         if (items.removeIf(p -> p.getProductId().equals(id))) {

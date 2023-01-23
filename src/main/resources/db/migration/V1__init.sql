@@ -11,7 +11,7 @@ create table products
 (   id bigserial    primary key,
     title           varchar(255),
     category_id     bigint references categories (id),
-    price           numeric,
+    price           numeric(8, 2),
     height          int,
     weight          int,
     description     varchar(255),
@@ -21,14 +21,14 @@ create table products
 );
 
 insert into products (title, price, category_id, height, weight, description, image) values
-('Bear', 800.5, 2, 50, 30, 'High-quality giclee print with nonfading ink on premium textured paper.', 'images/carts/bear.jpg'),
+('Bear', 800.50, 2, 50, 30, 'High-quality giclee print with nonfading ink on premium textured paper.', 'images/carts/bear.jpg'),
 ('Cat hairstyle', 25, 2, 20, 20, 'High-quality giclee print with nonfading ink on premium textured paper.', 'images/carts/cat_hairstyle.jpg'),
-('Magic', 700.7, 2, 25, 25, 'High-quality giclee print with nonfading ink on premium textured paper.', 'images/carts/magic.jpg'),
+('Magic', 700.70, 2, 25, 25, 'High-quality giclee print with nonfading ink on premium textured paper.', 'images/carts/magic.jpg'),
 ('Morning coffee', 700, 2, 25, 25, 'High-quality giclee print with nonfading ink on premium textured paper.', 'images/carts/morningcoffee.jpg'),
-('Peace', 500, 2, 30, 30, 'High-quality giclee print with nonfading ink on premium textured paper.', 'images/carts/peace.jpg'),
-('Submarine', 1000, 2, 30, 50, 'High-quality giclee print with nonfading ink on premium textured paper.', 'images/carts/submarine.jpg'),
-('Zhulka', 2000, 1, 30, 50, 'HA book that describes the adventures of a kind and small dog Zhulka', 'images/carts/zhulka.jpg'),
-('Dinner with friends', 400, 2, 40, 50, 'High-quality giclee print with nonfading ink on premium textured paper.', 'images/carts/dinner.jpg');
+('Peace', 500.00, 2, 30, 30, 'High-quality giclee print with nonfading ink on premium textured paper.', 'images/carts/peace.jpg'),
+('Submarine', 1000.00, 2, 30, 50, 'High-quality giclee print with nonfading ink on premium textured paper.', 'images/carts/submarine.jpg'),
+('Zhulka', 2000.00, 1, 30, 50, 'HA book that describes the adventures of a kind and small dog Zhulka', 'images/carts/zhulka.jpg'),
+('Dinner with friends', 400.00, 2, 40, 50, 'High-quality giclee print with nonfading ink on premium textured paper.', 'images/carts/dinner.jpg');
 
 create table users
 (
@@ -67,7 +67,7 @@ create table orders
 (
     id              bigserial primary key,
     user_id         bigint not null references users (id),
-    total_price     numeric not null,
+    total_price     numeric(8, 2) not null,
     address         varchar(255),
     phone           varchar(255),
     created_at      timestamp default current_timestamp,
@@ -80,8 +80,8 @@ create table  order_items
     product_id          bigint not null references products (id),
     order_id            bigint not null references orders (id),
     quantity            int not null,
-    price_per_product   numeric not null,
-    price               numeric not null,
+    price_per_product   numeric(8, 2) not null,
+    price               numeric(8, 2) not null,
     created_at          timestamp default current_timestamp,
     updated_at          timestamp default current_timestamp
 );

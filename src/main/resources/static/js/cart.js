@@ -7,7 +7,7 @@ angular.module('app', ['ngStorage']).controller('cartController', function ($sco
             .then(function (response) {
                 $scope.cart = response.data;
                 console.log(response.data);
-        });
+            });
     };
 
     $scope.loadOrders = function () {
@@ -60,7 +60,7 @@ angular.module('app', ['ngStorage']).controller('cartController', function ($sco
     }
 
 
-    if (!$localStorage.winterMarketUser) {
+    if ($localStorage.winterMarketUser) {
         try {
             let jwt = $localStorage.winterMarketUser.token;
             let payload = JSON.parse(atob(jwt.split('.')[1]));
@@ -74,11 +74,12 @@ angular.module('app', ['ngStorage']).controller('cartController', function ($sco
         }
         $http.defaults.headers.common.Authorization = 'Bearer ' + $localStorage.winterMarketUser.token;
     };
-    if ($localStorage.winterMarketGuestCartId) {
+
+    if (!$localStorage.winterMarketGuestCartId) {
         $http.get(cartContextPath + "/generate_uuid")
             .then(function successCallback(response) {
                 $localStorage.winterMarketGuestCartId = response.data.value;
-            })
+            });
     }
     $scope.loadCart();
     $scope.loadOrders()

@@ -53,6 +53,7 @@ angular.module('app', ['ngStorage']).controller('indexController', function ($sc
                 if (response.data.token) {
                     $http.defaults.headers.common.Authorization = 'Bearer ' + response.data.token;
                     $localStorage.winterMarketUser = {username: $scope.user.username, token: response.data.token};
+                    $scope.loadCart();
 
                     $scope.user.username = null;
                     $scope.user.password = null;
@@ -70,6 +71,7 @@ angular.module('app', ['ngStorage']).controller('indexController', function ($sc
     $scope.clearUser = function () {
         delete $localStorage.winterMarketUser;
         $http.defaults.common.Authorization = '';
+
     };
 
     $scope.isUserLoggedIn = function () {
@@ -78,6 +80,7 @@ angular.module('app', ['ngStorage']).controller('indexController', function ($sc
         } else {
             return false;
         }
+
     };
     if ($localStorage.winterMarketUser) {
         try {

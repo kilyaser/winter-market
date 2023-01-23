@@ -41,6 +41,7 @@ angular.module('app', ['ngStorage']).controller('productController', function ($
         $http.get(cartContextPath + '/' + $localStorage.winterMarketGuestCartId)
             .then(function (response) {
                 $scope.cart = response.data;
+                console.log(response.data);
             });
     };
 
@@ -58,11 +59,12 @@ angular.module('app', ['ngStorage']).controller('productController', function ($
         }
         $http.defaults.headers.common.Authorization = 'Bearer ' + $localStorage.winterMarketUser.token;
     };
+
     if (!$localStorage.winterMarketGuestCartId) {
         $http.get(cartContextPath + "/generate_uuid")
             .then(function successCallback(response) {
                 $localStorage.winterMarketGuestCartId = response.data.value;
-            })
+            });
     }
 
 

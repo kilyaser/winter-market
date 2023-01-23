@@ -36,6 +36,7 @@ public class CartService {
     }
     public Cart getCurrentCart(String uuid) {
         String targetUuid = cartPrefix + uuid;
+        log.info("Uuid target from getCurrentCart: {}", targetUuid);
         if (!carts.containsKey(targetUuid)) {
             carts.put(targetUuid, new Cart());
         }
