@@ -35,10 +35,10 @@
             <a class="nav-link" href="#">Store</a>
           </li>
           <li class="nav-item px-5">
-            <a class="nav-link" href="#">About</a>
+            <a class="nav-link" href="index.html#painter-block">About</a>
           </li>
           <li class="nav-item">
-            <a class="nav-link" href="#">Contact</a>
+            <a class="nav-link" href="index.html#contact&support">Contact</a>
           </li>
         </ul>
       </div>
@@ -66,42 +66,85 @@
     </div>
   </nav>
   <div class="container main-page">
-    <div class="cart-left-side">
-      <div>
-        <h3 class="shopping-cart">Shopping cart</h3>
+    <div class="d-flex cart-main-page">
+      <div class="cart-left-side">
+        <div>
+          <h2 class="shopping-cart">Shopping cart</h2>
 
-        <a class="navigation" href="index.html">Home</a><span class="text">&nbsp;/</span>
-        <a class="navigation" href="#">Store</a><span class="text">&nbsp;/</span>
-        <a class="navigation" href="#">Print</a>
-        <br><br>
-        <div class="d-flex cart-items" ng-repeat="item in cart.items">
-          <div class="d-flex"><a href="product.html" ng-click="productHtmlPage(item.productId)"><img class="cart-img" src="{{item.image}}"></a>
-            <div class="title-block">
-              <span>{{item.productTitle}}</span>
+          <a class="navigation fs-5" href="index.html">Home</a><span class="text fs-5">&nbsp;/</span>
+          <a class="navigation fs-5" href="#">Store</a><span class="text fs-5">&nbsp;/</span>
+          <a class="navigation fs-5" href="#">Print</a>
+          <br><br>
+          <div class="d-flex cart-items" ng-repeat="item in cart.items">
+            <div class="d-flex"><a href="product.html" ng-click="productHtmlPage(item.productId)"><img class="cart-img" src="{{item.image}}"></a>
+              <div class="title-block">
+                <span class="fs-5">{{item.productTitle}}</span>
+              </div>
+              <a class="button-change ms-3" href="#" ng-click="deleteProductFromCart(item.productId)"><span class="fs-4 text navigation">-</span></a>
+              <span class="item-quantity fs-5">{{item.quantity}}</span>
+              <a class="button-change" href="#"  ng-click="addToCart(item.productId)"><span class="fs-4 text navigation">+</span></a>
+              <div class="item-price">
+                <span class="fs-5">{{item.price}}</span>
+              </div>
+              <div class="delete-button">
+                <a href="#" class="text navigation" title="Clear the shopping cart position"ng-click="deleteAllQuantityFromCart(item.productId)">X</a>
+              </div>
             </div>
-            <a class="button-change" href="#" ng-click="deleteProductFromCart(item.productId)"><span class="fs-4 text navigation">-</span></a>
-            <span class="item-quantity">{{item.quantity}}</span>
-            <a class="button-change" href="#"  ng-click="addToCart(item.productId)"><span class="fs-4 text navigation">+</span></a>
-            <div class="item-price">
-              <span class="">{{item.price}}</span>
+          </div>
+          <br>
+          <hr>
+          <div class="d-flex justify-content-between flex-column">
+            <div class="d-flex justify-content-between">
+              <div><span class="fs-4">Shipping</span></div>
+              <div><span class="fs-4">Free</span></div>
+            </div><br>
+            <div class="d-flex justify-content-between">
+              <h3>TOTAL:</h3>
+              <h3 class="totalPrice-block">{{cart.totalPrice}}</h3>
             </div>
-            <div class="delete-button">
-              <a href="#" class="text navigation" title="Clear the shopping cart position"ng-click="deleteAllQuantityFromCart(item.productId)">X</a>
+            <br>
+            <div>
+              <button type="button" class="btn btn-dark" data-bs-toggle="tooltip" data-bs-placement="right" title="create order" ng-click="createOrder()">Create Order</button>
             </div>
           </div>
         </div>
-        <br>
-        <hr>
-        <div class="d-flex justify-content-between">
-          <h3>TOTAL:</h3>
-          <h3 class="totalPrice-block">{{cart.totalPrice}}</h3>
+      </div>
+      <div class="cart-right-side ms-5">
+        <form>
+          <div class="mb-3">
+            <label for="exampleInputEmail1" class="form-label">
+              <h2>Checkout</h2>
+              <span class="fs-5">Enter your email address. This address will be used to send you order status updates.</span></label>
+            <input type="email" class="form-control fs-5" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="You mail address">
+            <div id="emailHelp" class="form-text">We'll never share your email with anyone else.</div>
+          </div>
+<!--          <div class="mb-3">-->
+<!--            <label for="exampleInputPassword1" class="form-label">Password</label>-->
+<!--            <input type="password" class="form-control" id="exampleInputPassword1">-->
+<!--          </div>-->
+<!--          <div class="mb-3 form-check">-->
+<!--            <input type="checkbox" class="form-check-input" id="exampleCheck1">-->
+<!--            <label class="form-check-label" for="exampleCheck1">Check me out</label>-->
+<!--          </div>-->
+          <button type="submit" class="btn btn-dark btn-submit">Submit</button>
+        </form>
+        <div class="mt-4">
+          <span class="fs-3">Next</span>
+          <hr>
+          <div><span class="fs-5">Delivery options</span></div>
+          <div><span class="fs-5 text">Select how you’ll be receiving your order.</span></div>
+          <br>
+          <div><span class="fs-5">Payment information</span></div>
+          <div><span class="fs-5 text">Choose a payment method and enter your payment details.</span></div>
+          <br>
+          <div><span class="fs-5">Order confirmation</span></div>
+          <div><span class="fs-5 text">Place your order and receive a confirmation email.</span></div>
+          <br>
         </div>
+
       </div>
     </div>
-    <br><br>
-    <div>
-      <button type="button" class="btn btn-dark" data-bs-toggle="tooltip" data-bs-placement="right" title="create order" ng-click="createOrder()">Create Order</button>
-    </div>
+
     <br><br>
     <h3>My orders</h3>
     <table class="table table-hover">

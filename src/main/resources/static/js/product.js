@@ -2,6 +2,7 @@ angular.module('app', ['ngStorage']).controller('productController', function ($
     const contextPath = 'http://localhost:8189/winter/api/v1/products'
     const cartContextPath = 'http://localhost:8189/winter/api/v1/cart'
     const productId = $localStorage.productHtml;
+
     $scope.getProduct = function () {
          $http.get(contextPath + "/" + productId)
             .then(function (response) {
@@ -29,7 +30,7 @@ angular.module('app', ['ngStorage']).controller('productController', function ($
     }
 
     $scope.addToCart = function (productId) {
-        $http.get(cartContextPath + '/add/' + productId)
+        $http.get(cartContextPath + '/' + $localStorage.winterMarketGuestCartId + '/add/' + productId)
             .then(function (response) {
                 $scope.loadCart();
                 $scope.buttonAction();
@@ -37,9 +38,10 @@ angular.module('app', ['ngStorage']).controller('productController', function ($
 
     };
     $scope.loadCart = function () {
-        $http.get(cartContextPath)
+        $http.get(cartContextPath + '/' + $localStorage.winterMarketGuestCartId)
             .then(function (response) {
                 $scope.cart = response.data;
+                console.log(response.data);
             });
     };
 
@@ -57,6 +59,14 @@ angular.module('app', ['ngStorage']).controller('productController', function ($
         }
         $http.defaults.headers.common.Authorization = 'Bearer ' + $localStorage.winterMarketUser.token;
     };
+
+    if (!$localStorage.winterMarketGuestCartId) {
+        $http.get(cartContextPath + "/generate_uuid")
+            .then(function successCallback(response) {
+                $localStorage.winterMarketGuestCartId = response.data.value;
+            });
+    }
+
 
     $scope.getProduct();
     $scope.loadProducts();

@@ -21,3 +21,6 @@ spring:
 jwt:
   secret: KdsjSKJefsfs49*#*#435DFCregdfvc453*Difjslkj834rj${$JJDKsj34jLKSJDF*$FSLk
   lifetime: 30000000
+
+cart-service:
+  cart-prefix: winter_cart_
