@@ -13,6 +13,7 @@ import ru.geelbrains.spring.winter.market.entities.User;
 import ru.geelbrains.spring.winter.market.exceptions.ResourceNotFoundException;
 import ru.geelbrains.spring.winter.market.repositories.UserRepository;
 import java.util.Collection;
+import java.util.List;
 import java.util.Optional;
 import java.util.stream.Collectors;
 
@@ -20,9 +21,11 @@ import java.util.stream.Collectors;
 @Service
 @RequiredArgsConstructor
 public class UserService implements UserDetailsService {
-    private final UserRepository repository;
+    private final UserRepository userRepository;
+    private final RoleService roleService;
+
     public Optional<User> findByUsername(String username) {
-        return repository.findByUsername(username);
+        return userRepository.findByUsername(username);
     }
     @Override
     @Transactional
@@ -32,5 +35,10 @@ public class UserService implements UserDetailsService {
     }
     private Collection<? extends GrantedAuthority> mapRoleToAuthorities(Collection<Role> roles) {
         return roles.stream().map(role -> new SimpleGrantedAuthority(role.getName())).collect(Collectors.toList());
+    }
+
+    public void createUser(User user) {
+        user.setRoles(List.of(roleService.getUserRole()));
+        userRepository.save(user);
     }
 }

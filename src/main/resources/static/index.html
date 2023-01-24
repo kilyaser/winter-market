@@ -39,6 +39,9 @@
           <li class="nav-item">
             <a class="nav-link" href="#contact&support">Contact</a>
           </li>
+          <li class="nav-item px-5" ng-show="isUserLoggedIn()">
+              <a class="nav-link" href="orders.html">My orders</a>
+          </li>
           <li class="nav-item px-5" ng-show="!isUserLoggedIn()">
             <form class="align-middle" ng-submit="tryToAuth()">
               <div class="input-group input-group-sm p-2">
@@ -52,8 +55,12 @@
               </div>
             </form>
           </li>
+
           <li class="nav-item p-2 px-5" ng-show="isUserLoggedIn()">
             <button class="btn btn-outline-secondary btn-sm" ng-click="tryToLogout()">Sing out</button>
+          </li>
+          <li class="nav-item" ng-show="!isUserLoggedIn()">
+            <a class="nav-link" href="login.html">Registration</a>
           </li>
         </ul>
       </div>
@@ -97,7 +104,6 @@
       </div>
     </div>
   </div>
-
 
   <div class="container-fluid second_section_block">
     <div class="container">
@@ -151,7 +157,6 @@
     </div>
     </div>
   </div>
-
 
   <footer id="painter-block">
     <div class="container-fluid painter-block" >

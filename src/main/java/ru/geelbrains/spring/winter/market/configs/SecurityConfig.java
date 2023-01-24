@@ -28,8 +28,7 @@ public class SecurityConfig {
                 .csrf().disable()
                     .cors().disable()
                         .authorizeHttpRequests()
-                            .requestMatchers("/secured").authenticated()
-                            .requestMatchers("/orders").authenticated()
+                             .requestMatchers("/orders").authenticated()
                                 .anyRequest().permitAll()
 
                 .and()

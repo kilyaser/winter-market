@@ -34,7 +34,8 @@ create table users
 (
     id          bigserial primary key,
     username    varchar(36) not null,
-    password    varchar(80) not null
+    password    varchar(80) not null,
+    email       varchar(80)
 );
 
 create table roles

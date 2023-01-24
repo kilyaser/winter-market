@@ -146,25 +146,8 @@
     </div>
 
     <br><br>
-    <h3>My orders</h3>
-    <table class="table table-hover">
-      <tr class="table-light">
-        <td>№</td>
-        <td>Quantity</td>
-        <td>Price</td>
-      </tr>
-      <tbody>
-      <tr ng-repeat="o in orders">
-        <td>{{o.id}}</td>
-        <td>{{o.items[0].quantity}}</td>
+    <h3><a href="orders.html">My orders</a></h3>
 
-        <td>{{o.totalPrice}}</td>
-       </tr>
-      </tbody>
-    </table>
-    <div>
-      <button type="button" class="btn btn-dark" data-bs-toggle="tooltip" data-bs-placement="right" title="load order" ng-click="loadOrders()">Load Order</button>
-    </div>
   </div>
   <footer class="container-fluid footer-block">
     <div class="d-flex container justify-content-center">
