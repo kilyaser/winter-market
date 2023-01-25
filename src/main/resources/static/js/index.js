@@ -1,4 +1,4 @@
-angular.module('app', ['ngStorage']).controller('indexController', function ($scope, $http, $localStorage) {
+angular.module('app', ['ngStorage']).controller('indexController', function ($scope, $http, $localStorage, $rootScope) {
     const contextPath = 'http://localhost:8189/winter/api/v1/products'
     const cartContextPath = 'http://localhost:8189/winter/api/v1/cart'
     const authPath = 'http://localhost:8189/winter/auth'
@@ -42,6 +42,13 @@ angular.module('app', ['ngStorage']).controller('indexController', function ($sc
                 $scope.loadCart();
             });
     };
+    $scope.mergeGuestCart = function () {
+        $http.get(cartContextPath + '/merge/' + $localStorage.winterMarketGuestCartId)
+            .then(function (response){
+                delete $localStorage.winterMarketGuestCartId;
+                $scope.loadCart();
+            });
+    }
 
     $scope.productHtmlPage = function (productId) {
         $localStorage.productHtml = productId;
@@ -53,8 +60,8 @@ angular.module('app', ['ngStorage']).controller('indexController', function ($sc
                 if (response.data.token) {
                     $http.defaults.headers.common.Authorization = 'Bearer ' + response.data.token;
                     $localStorage.winterMarketUser = {username: $scope.user.username, token: response.data.token};
+                    $scope.mergeGuestCart();
                     $scope.loadCart();
-
                     $scope.user.username = null;
                     $scope.user.password = null;
                 }
@@ -74,7 +81,7 @@ angular.module('app', ['ngStorage']).controller('indexController', function ($sc
 
     };
 
-    $scope.isUserLoggedIn = function () {
+    $rootScope.isUserLoggedIn = function () {
         if ($localStorage.winterMarketUser) {
             return true;
         } else {

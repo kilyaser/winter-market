@@ -1,20 +1,17 @@
-angular.module('app', [ngStorage]).controller('loginController', function ($scope, $http, $localStorage) {
-    const authPath = 'http://localhost:8189/winter/auth'
+angular.module('app', ['ngStorage']).controller('regController', function ($scope, $http, $location, $localStorage) {
+    const registrationPath = 'http://localhost:8189/winter/registration'
 
-    $scope.tryToAuth = function () {
-        $http.post(authPath, $scope.user)
-            .then(function successCallback(response) {
+
+    $scope.functionRegistration = function () {
+        $http.post(registrationPath, $scope.reguser).then(function (response) {
                 if (response.data.token) {
                     $http.default.headers.common.Authorization = 'Bearer ' + response.data.token;
-                    $localStorage.winterMarketUser = {username: $scope.user.username, token: response.data.token};
+                    $localStorage.winterMarketUser = {username: $scope.reguser.username, token: response.data.token};
+                    $localStorage.reguser = null;
 
-                    $scope.user.username = null;
-                    $scope.user.password = null;
+                    $location.href = "/index.html";
                 }
-            }, function errorCallback(response){
 
         });
-    };
-
-
+    }
 });
